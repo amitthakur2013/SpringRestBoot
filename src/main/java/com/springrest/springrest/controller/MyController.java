@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +35,10 @@ public class MyController {
 	@GetMapping("/courses/{courseId}")
 	public Course getCourse(@PathVariable String courseId) {
 		return this.courseService.getCourse(Long.parseLong(courseId));
+	}
+	
+	@PostMapping(path="/courses",consumes="application/json")
+	public Course addCourse(@RequestBody Course course) {
+		return this.courseService.addCourse(course);
 	}
 }
